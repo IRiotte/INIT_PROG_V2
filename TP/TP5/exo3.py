@@ -48,13 +48,13 @@ def seuil_som_elem(liste, seuil):
     return False
 
 def test_seuil():
-    assert seuil_som_elem([5,7,9,4,5], 5) == True
-    assert seuil_som_elem([5,7,9,4,5], 1100) == False
-    assert seuil_som_elem([], 5) == False
-    assert seuil_som_elem([5], 5) == False
-    assert seuil_som_elem([5], 9) == False
-    assert seuil_som_elem([8], 2) == True
-    assert seuil_som_elem([5,2,3,4,1], 15) == False
+    assert seuil_som_elem([5,7,9,4,5], 5)
+    assert not seuil_som_elem([5,7,9,4,5], 1100)
+    assert not seuil_som_elem([], 5)
+    assert not seuil_som_elem([5], 5)
+    assert not seuil_som_elem([5], 9)
+    assert seuil_som_elem([8], 2)
+    assert not seuil_som_elem([5,2,3,4,1], 15)
 
 
 def  est_adresse_mail(chaine):
@@ -67,7 +67,36 @@ def  est_adresse_mail(chaine):
     Returns:
         bool: True si la chaîne est une adresse e-mail potentielle,
         False sinon
-    """                        
-    return
+    
+    Invariant: 
+        nb_arob contient le nombre d'occurences de @ dans les caractères
+    déjà parcourus.
+        ch_apres_arob contient les caractères présents apres le premier @ de la
+    chaîne parmis les caractères déjà parcourus
+    """
+    nb_arob = 0
+    ch_apres_arob = ""
+    if len(chaine) > 3: #le mail possède au moins 4 caractères
+        if chaine[0] != "@" and chaine[-1] != ".":
+            for carac in chaine:
+                if carac == "@":
+                    nb_arob += 1
+                if nb_arob > 0:
+                    ch_apres_arob += carac
+            if "." in ch_apres_arob:
+                if not " " in chaine:
+                    if nb_arob == 1:
+                        return True
+    return False
 
-
+def test_email():
+    assert est_adresse_mail("jean@gmail.com")
+    assert est_adresse_mail("jean.zezf@gmail.com")
+    assert est_adresse_mail("jean.htt@gm.ail.com")
+    assert not est_adresse_mail("jea@n@gmail.com")
+    assert not est_adresse_mail("@jean@gmail.com")
+    assert not est_adresse_mail("jean@qsdaz..")
+    assert not est_adresse_mail("jean@qsdaz.@")
+    assert not est_adresse_mail("je suis@je.an")
+    assert est_adresse_mail("j@.e")
+    assert not est_adresse_mail("")
