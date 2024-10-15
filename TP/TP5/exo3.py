@@ -72,7 +72,7 @@ def  est_adresse_mail(chaine):
         nb_arob contient le nombre d'occurences de @ dans les caractères
     déjà parcourus.
         ch_apres_arob contient les caractères présents apres le premier @ de la
-    chaîne parmis les caractères déjà parcourus
+    chaîne parmis les caractères déjà parcourus s'il y en à un
     """
     nb_arob = 0
     ch_apres_arob = ""
