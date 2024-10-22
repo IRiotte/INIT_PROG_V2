@@ -82,12 +82,64 @@ def recherche_par_famille(famille, liste_oiseaux):
 
 
 def est_observation(liste_observation):
-    for observation in liste_observation:
-        if not isinstance(observation[0], str) or not isinstance(observation[1], int):
-            return False
     return True
 
 print(est_observation([("sdfs",485)]))
+
+
+
+
+def moyenne_specimen(liste_observation):
+    """Fonction qui calcul le nombre moyen de specimen dans une liste d'observation.
+
+    Args:    liste_obs_oiseau = []
+        liste_observation (list): une liste d'observation sous forme de tuple (nom, nbr_observe)
+
+    Returns:
+        float: la moyenne de specimen observés dans la liste, renvoie None s'il n'y a pas de
+        specimen observé.
+
+    Invariant:
+        la variable nbr_obs contient le nombre d'observation totale pour tous les oiseaux déjà parcouru dans la liste
+        la variable nbr_oiseau contient le nombre d'oiseaux observés pour tous les oiseaux déjà parcouru dans la liste.
+    """
+
+    nbr_obs = 0
+    nbr_oiseau = 0
+    for oiseau in liste_observation:
+        nbr_obs += oiseau[1]
+        nbr_oiseau += 1
+    
+    if nbr_oiseau > 0:
+        return nbr_obs / nbr_oiseau
+    return None
+
+
+
+def total_obs_famille(nom_famille, liste_oiseaux, liste_observation):
+    """Fonction qui renvoie le total d'obersvation pour une famille d'oiseaux
+    donné.
+
+    Args:
+        nom_famille (str): _description_
+        liste_oiseaux (list): une liste de tuple d'oiseaux de la forme (nom_oiseau, famille_oiseau)
+        liste_observation (list): une liste de tuple d'observation de la forme (nom_oiseau, nbr_observation)
+
+    Returns:
+        int: Le total des observation pour une famille donné
+
+    Invariant:
+    """
+    total_observe = 0
+    liste_famille = recherche_par_famille(nom_famille, liste_oiseaux)
+    for oiseau in liste_famille:
+        total_observe += recherche_oiseau(oiseau, liste_observation)[1]
+    return total_observe
+
+
+# Exercice 4
+#-----------------------------
+
 
 
 
