@@ -17,8 +17,8 @@ comptage3 = [0, 0, 4, 3, 2, 1, 2, 4]
 observations1 = [("Merle", 2), ("Moineau", 5), ("Pic vert", 1), ("Pie", 2),
                  ("Rouge-gorge", 3), ("Tourterelle", 5)]
 
-observations2 = [("Merle", 2), ("Mésange", 1), ("Moineau", 3),
-                 ("Pinson", 3), ("Tourterelle", 5), ("Rouge-gorge", 1)]
+observations2 = [("Merle", 2), ("Moineau", 3), ("Mésange", 1),
+                 ("Pinson", 3), ("Rouge-gorge", 1), ("Tourterelle", 5)]
 
 observations3 = [("Mésange", 4), ("Pic vert", 3), ("Pie", 2), ("Pinson", 1),
                  ("Rouge-gorge", 2), ("Tourterelle", 4)]
@@ -67,12 +67,32 @@ def oiseau_le_plus_observe_bis(liste_observations):
 
 
 def recherche_oiseau(nom, liste_oiseaux):
+    """Fonction qui permet de retrouver les caractéristiques (nom,famille) d’un 
+    oiseau dans une liste d’oiseaux à partir de son nom
+
+    Args:
+        nom (str): le nom d'oiseau à rechercher
+        liste_oiseaux (list): une liste de tuple (nom_oiseau, famille_oiseau)
+
+    Returns:
+        tuple: le tuple (nom, famille) s'il existe, sinon None
+    """    
     for oiseau in liste_oiseaux:
         if nom == oiseau[0]:
             return oiseau
     return None
 
 def recherche_par_famille(famille, liste_oiseaux):
+    """Fonction qui permet de retrouver tous les oiseaux d’une même 
+    famille dans une liste d’oiseaux
+
+    Args:
+        famille (str): la famille à rechercher
+        liste_oiseaux (list): une liste de tuple (nom, famille)
+
+    Returns:
+        list: la liste contenant tous les tuple d'oiseaux (nom, famille) de la meme famille
+    """    
     liste_meme_famille = []
     for oiseau in liste_oiseaux:
         if famille == oiseau[1]:
@@ -81,12 +101,50 @@ def recherche_par_famille(famille, liste_oiseaux):
 
 
 
-def est_observation(liste_observation):
+def est_liste_observations(liste_observation):
+    """Fonction renvoie True si une liste est bien une liste d'observation
+
+    Args:
+        liste_observation (list): une liste de tuple (nom_oiseau, nbr_observation)
+
+    Returns:
+        bool: renvoie True si c'est une liste d'observation, False sinon.
+
+    Invariant: 
+        la liste d'observation est toujours triée dans l'ordre croissant jusqu'à i.
+        chaque tuple dela liste d'observation contient un nombre d'observation > 0 jusqu'à i
+    """    
+
+    if  liste_observation != []:
+        if liste_observation[0][1] == 0:
+                return False
+    for i in range(1, len(liste_observation)):
+        if liste_observation[i][1] == 0:
+            return False
+        if liste_observation[i-1][0] > liste_observation[i][0]:
+            return False
     return True
 
-print(est_observation([("sdfs",485)]))
+est_liste_observations(observations2)
 
 
+def max_observation(liste_observation):
+    """Fonction qui donne le plus grand nombre de spécimens observés dans une liste
+d’observations.
+
+    Args:
+        liste_observation (list): une liste de tuples (nom, nbr_observation)
+
+    Returns:
+        int: le plus grand nombre de specimens observés dans une liste d'observation
+    """
+    obs_max = None
+    if liste_observation != []:
+        for observation in liste_observation:
+            if obs_max is None or observation[1] > obs_max:
+                obs_max = observation[1]
+        return obs_max[0]
+    return obs_max
 
 
 def moyenne_specimen(liste_observation):
@@ -130,12 +188,7 @@ def total_obs_famille(nom_famille, liste_oiseaux, liste_observation):
 
     Invariant:
     """
-    total_observe = 0
-    liste_famille = recherche_par_famille(nom_famille, liste_oiseaux)
-    for oiseau in liste_famille:
-        total_observe += recherche_oiseau(oiseau, liste_observation)[1]
-    return total_observe
-
+    
 
 # Exercice 4
 #-----------------------------
