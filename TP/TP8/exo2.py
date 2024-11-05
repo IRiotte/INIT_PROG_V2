@@ -22,13 +22,13 @@ def sans_espace(mot_de_passe):
     return not " " in mot_de_passe
 
 def chiffre_ok(mot_de_passe):
-    """Fonction qui vérifie si au moins un chiffre est présent dans le mot de passe
+    """Fonction qui vérifie si au moins 3 chiffre sont présents dans le mot de passe
 
     Args:
         mot_de_passe (str): le mot de passe à vérifier
 
     Returns:
-        bool: True si  au moins un chiffre est présent, False sinon
+        bool: True si  au moins 3 chiffre est présent, False sinon
 
     Invariants: aucun chiffre n'est présent dans les caractères déjàà parcourus.
     """    
@@ -38,7 +38,7 @@ def chiffre_ok(mot_de_passe):
         if mot_de_passe[ind] in "0123456789":
             nbr_chiffre += 1
         ind += 1
-    return nbr_chiffre < 4
+    return nbr_chiffre > 3
 
 def pas_chiffre_consecutif(mot_de_passe):
     """Fonction qui vérifie si au moins un chiffre est présent dans le mot de passe
