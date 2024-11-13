@@ -12,7 +12,7 @@ def intelligence_moyenne(dico_heros):
     for _,intell,_ in dico_heros.values():
         somme += intell
         nbr_heros += 1
-    if not nbr_heros is None:
+    if not nbr_heros == 0:
         return somme/nbr_heros
     return None
 
@@ -32,3 +32,23 @@ def kikelplusfort(dico_heros):
             le_plus_fort = nom
             max_force = force
     return le_plus_fort
+
+def combienDeCretins(dico_heros):
+    """Fonction qui renvoie le nombre de personnages dont l'intelligence est strictement
+    inférieure à la moyenne.
+
+    Args:
+        dico_heros (dict): le dictionnaire des héros avec clé: nom (str), valeur:tuple(force,int,desc)
+
+    Returns:
+        int: le nombre de personnages dont l'intelligence est strictement
+    inférieure à la moyenne.
+    """
+    nbr_cretin = None
+    moy_intell = intelligence_moyenne(dico_heros)
+    for (_, intell, _) in dico_heros.values():
+        if nbr_cretin is None:
+            nbr_cretin = 0
+        if intell < moy_intell:
+            nbr_cretin += 1
+    return nbr_cretin

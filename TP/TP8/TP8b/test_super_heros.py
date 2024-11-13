@@ -25,3 +25,11 @@ def test_kikelplusfort():
     assert sh.kikelplusfort(dic_vide) is None
     assert sh.kikelplusfort(avengers2) == "Ilane Riotte"
     assert sh.kikelplusfort(avengers3) == "Python3"
+
+def test_combienDeCretins():
+    assert sh.combienDeCretins(avengers1) == 2
+    assert sh.combienDeCretins(dic_vide) is None
+    assert sh.combienDeCretins(avengers2) == 1
+    assert sh.combienDeCretins(avengers3) == 0
+
+test_combienDeCretins()
