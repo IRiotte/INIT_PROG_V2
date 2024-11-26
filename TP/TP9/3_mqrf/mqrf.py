@@ -13,7 +13,10 @@ def quel_guichet(mqrf, guichet):
     Returns:
         str: le nom du guichet qui finit par donner le formulaire A-38
     """
-    ...
+    guichet_suiv = guichet
+    while mqrf[guichet_suiv] is not None:
+        guichet_suiv = mqrf[guichet_suiv]
+    return guichet_suiv
 
 
 def quel_guichet_v2(mqrf, guichet):
@@ -28,7 +31,7 @@ def quel_guichet_v2(mqrf, guichet):
         tuple: le nom du guichet qui finit par donner le formulaire A-38 et le nombre de
         guichets visités pour y parvenir
     """
-    ...
+    
 
 
 def quel_guichet_v3(mqrf, guichet):
