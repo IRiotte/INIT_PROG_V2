@@ -183,15 +183,29 @@ def get_colonne(matrice, colonne):
 
 def get_diagonale_principale(matrice):
 
-    ...
+    liste_diag = []
+    nb_col = get_nb_colonnes(matrice)
+    for i in range(nb_col):
+        liste_diag.append(matrice[2][nb_col*i + i])
+    return liste_diag
 
 def get_diagonale_secondaire(matrice):
 
-    ...
+    liste_diag = []
+    nb_col = get_nb_colonnes(matrice)
+    for i in range(1, nb_col+1):
+        liste_diag.append(matrice[2][nb_col*i - i])
+    return liste_diag
 
 def transpose(matrice):
 
-    ...
+    liste_transp = []
+    nb_col = get_nb_colonnes(matrice)
+    nb_ligne = get_nb_lignes(matrice)
+    for i in range(nb_col):
+        for j in range(nb_ligne):
+            liste_transp.append(matrice[2][nb_col*j + i])
+    return liste_transp
 
 def is_triangulaire_inf(matrice):
 

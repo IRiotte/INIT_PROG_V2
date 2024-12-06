@@ -12,7 +12,9 @@ def exemples_pokedex_v1():
         ('Carmache', 'Dragon'), ('Carmache', 'Sol'),
         ('Colimucus', 'Dragon'), ('Palkia', 'Dragon'),
         ('Palkia', 'Eau')}
-    pokedex_romain = ...      
+    pokedex_romain = {
+        ('Maraiste', 'Eau'), ('Maraiste', 'Sol'),
+        ('Racaillou', 'Sol'), ('Racaillou', 'Roche')}    
     return (pokedex_anakin, pokedex_romain)
 
 def exemples_pokedex_v2():
@@ -21,7 +23,9 @@ def exemples_pokedex_v2():
         'Carmache': {'Dragon','Sol'},
         'Colimucus': {'Dragon'},
         'Palkia': {'Dragon', 'Eau'}}
-    pokedex_romain = ...   
+    pokedex_romain = {
+        'Maraiste': {'Eau','Sol'},
+        'Racaillou': {'Sol',"Roche"}}   
     return (pokedex_anakin, pokedex_romain)
 
 def exemples_pokedex_v3():
@@ -30,7 +34,10 @@ def exemples_pokedex_v3():
         'Dragon': {'Carmache','Colimucus', 'Palkia'},
         'Sol': {'Carmache'},
         'Eau': {'Palkia'}}
-    pokedex_romain = ...
+    pokedex_romain = {
+        'Eau': {'Maraiste'},
+        'Sol': {'Maraiste', 'Racaillou'},
+        'Roche': {'Racaillou'}}
     return (pokedex_anakin, pokedex_romain)
 
 
@@ -54,6 +61,7 @@ def test_nombre_de_v1():
     (pokedex_anakin, pokedex_romain) = exemples_pokedex_v1()
     assert pokedex.nombre_de_v1("Dragon", pokedex_anakin) == 3
     assert pokedex.nombre_de_v1("Dragon", pokedex_romain) == 0
+    
 
 def test_attaque_preferee_v1():
     (pokedex_anakin, pokedex_romain) = exemples_pokedex_v1()
