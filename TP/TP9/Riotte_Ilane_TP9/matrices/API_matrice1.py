@@ -1,5 +1,6 @@
 """ Matrices : API n 1 """
 
+import csv
 
 def matrice(nb_lignes, nb_colonnes, valeur_par_defaut):
     """crée une nouvelle matrice en mettant la valeur par défaut dans chacune de ses cases.
@@ -12,10 +13,9 @@ def matrice(nb_lignes, nb_colonnes, valeur_par_defaut):
     Returns:
         une nouvelle matrice qui contient la valeur par défaut dans chacune de ses cases
     """
-    la_matrice = []
-    for _ in range(nb_lignes):
-        la_matrice.append([valeur_par_defaut]*nb_colonnes)
-    return la_matrice
+    return (nb_lignes, nb_colonnes, [valeur_par_defaut for i in range(nb_colonnes*nb_lignes)])
+
+
 
 def set_val(la_matrice, ligne, colonne, nouvelle_valeur):
     """permet de modifier la valeur de l'élément qui se trouve à la ligne et à la colonne
@@ -30,7 +30,10 @@ def set_val(la_matrice, ligne, colonne, nouvelle_valeur):
     Returns:
         None
     """
-    la_matrice[ligne][colonne] = nouvelle_valeur
+    try:
+        la_matrice[2][ligne*la_matrice[1] + colonne] = nouvelle_valeur
+    except:
+        return None
 
 def get_nb_lignes(la_matrice):
     """permet de connaître le nombre de lignes d'une matrice
@@ -41,7 +44,8 @@ def get_nb_lignes(la_matrice):
     Returns:
         int : le nombre de lignes de la matrice
     """
-    return len(la_matrice)
+    return la_matrice[0]
+
 
 def get_nb_colonnes(la_matrice):
     """permet de connaître le nombre de colonnes d'une matrice
@@ -52,10 +56,11 @@ def get_nb_colonnes(la_matrice):
     Returns:
         int : le nombre de colonnes de la matrice
     """
-    if len(la_matrice) > 0:
-        return len(la_matrice[0])
-    else:
-        return None  #la_matrice = []
+    try:
+        return la_matrice[1]
+    except:
+        return None
+
 
 def get_val(la_matrice, ligne, colonne):
     """permet de connaître la valeur de l'élément de la matrice dont on connaît
@@ -69,9 +74,11 @@ def get_val(la_matrice, ligne, colonne):
     Returns:
         la valeur qui est dans la case située à la ligne et la colonne spécifiées
     """
-    if get_nb_lignes(la_matrice) <= ligne and get_nb_colonnes(la_matrice) <= colonne:
+    try: 
+        mat_col = get_nb_colonnes(la_matrice)
+        return la_matrice[2][ligne*mat_col + colonne]
+    except:
         return None
-    return la_matrice[ligne][colonne]
 
 # Fonctions pour l'affichage
 
@@ -85,7 +92,7 @@ def affiche_ligne_separatrice(la_matrice, taille_cellule=4):
     """
     print()
     for _ in range(get_nb_colonnes(la_matrice) + 1):
-        print('-' * taille_cellule + '+', end = '')
+        print('-'*taille_cellule+'+', end='')
     print()
 
 
@@ -99,13 +106,13 @@ def affiche(la_matrice, taille_cellule=4):
     nb_colonnes = get_nb_colonnes(la_matrice)
     nb_lignes = get_nb_lignes(la_matrice)
     print(' '*taille_cellule+'|', end='')
-    for indice in range(nb_colonnes):
-        print(str(indice).center(taille_cellule) + '|', end = '')
+    for i in range(nb_colonnes):
+        print(str(i).center(taille_cellule) + '|', end='')
     affiche_ligne_separatrice(la_matrice, taille_cellule)
-    for ind in range(nb_lignes):
-        print(str(ind).rjust(taille_cellule) + '|', end = '')
-        for ind_j in range(nb_colonnes):
-            print(str(get_val(la_matrice, ind, ind_j)).rjust(taille_cellule) + '|', end='')
+    for i in range(nb_lignes):
+        print(str(i).rjust(taille_cellule) + '|', end='')
+        for j in range(nb_colonnes):
+            print(str(get_val(la_matrice, i, j)).rjust(taille_cellule) + '|', end='')
         affiche_ligne_separatrice(la_matrice, taille_cellule)
     print()
 
@@ -118,21 +125,42 @@ def charge_matrice_str(nom_fichier):
 
     Args:
         nom_fichier (str): le nom d'un fichier CSV (séparateur  ',')
-sup
+
     Returns:
         une matrice de str
     """
-    ...
+    matrice = []
+    nb_ligne = 0
+    nb_colonne = 0
+    with open(nom_fichier) as matrice_csv:
+        matrice_reader = csv.reader(matrice_csv, delimiter=",")
+        for ligne in matrice_reader:
+            ligne.remove("")
+            matrice += ligne
+            nb_ligne += 1
+        nb_colonne = len(ligne)
+    return (nb_ligne, nb_colonne, matrice)
+
 
 def sauve_matrice(la_matrice, nom_fichier):
     """permet sauvegarder une matrice dans un fichier CSV.
     Attention, avec cette fonction, on perd l'information sur le type des éléments
 
     Args:
-        la_matrice : une matrice
+        matrice : une matrice
         nom_fichier (str): le nom du fichier CSV que l'on veut créer (écraser)
 
     Returns:
         None
     """
-    ...
+    with open(nom_fichier) as matrice_csv:
+        matrice_writer = csv.writer(matrice_csv, delimiter=",")
+        ligne = []
+        cpt = 0
+        for elem in la_matrice[2]:
+            ligne.append(elem)
+            cpt += 1
+            if cpt == la_matrice[2]:
+                matrice_writer.writerow(ligne)
+
+

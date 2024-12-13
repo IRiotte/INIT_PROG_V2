@@ -116,7 +116,7 @@ def attaque_preferee_v2(pokedex):
     Complexité: O(N) 
     """
     dico_freq = dict()
-    for nom,ens_att in pokedex.items():
+    for _,ens_att in pokedex.items():
         for att in ens_att:
             if att not in dico_freq:
                 dico_freq[att] = 0
