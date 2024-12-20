@@ -2,7 +2,7 @@
     Remarques : tous les tests de ce fichier doivent passer
     quelle que soit l'API utilisée
 """
-import API_matrice2 as API
+import TP.TP11.API_matrice2 as API
 import utilitaires_matrice as uti
 
 def matrice1():

@@ -1,4 +1,4 @@
-import API_matriceN as matrice_util
+import API_matrice2 as matrice_util
 
 def sous_matrice(matrice, hauteur, largeur, ligne, colonne):
     """Fonction qui renvoie la matrice de taille donnée (inférieure à la matrice d'origine),
@@ -23,9 +23,28 @@ def sous_matrice(matrice, hauteur, largeur, ligne, colonne):
             matrice_util.set_val(mat_bloc, i, j, nouv_val)
     return mat_bloc
 
-def colle_sousèmatrice(matrice, sous_matrice, ligne_haut, colonne_gauche):
+def colle_sous_matrice(matrice, sous_matrice, ligne_haut, colonne_gauche):
+    """Fonction qui colle une sous matrice dans une matrice à partir
+    de la position supérieure gauche d'indices donnés.
+
+    Args:
+        matrice : une matrice quelconque
+        sous_matrice : une matrice quelconque
+        ligne_haut (int): l'indice de la ligne du coin supérieur gauche du collage
+        colonne_gauche (int): _description_
+    """
+    nb_ligne_sm = matrice_util.get_nb_lignes(sous_matrice)
+    nb_col_sm = matrice_util.get_nb_colonnes(sous_matrice)
+    nb_ligne_m = matrice_util.get_nb_lignes(matrice)
+    nb_col_m = matrice_util.get_nb_colonnes(matrice)
+
+    if nb_ligne_sm + ligne_haut <= nb_ligne_m and nb_col_sm + colonne_gauche <= nb_col_m:
+        for i in range(nb_ligne_sm):
+            for j in range(nb_col_sm):
+                nouv_val = matrice_util.get_val(sous_matrice, i, j)
+                matrice_util.set_val(matrice, i+ligne_haut, j+colonne_gauche, nouv_val)
+    else:
+        print("erreur lors du collage")
 
 
-
-    ...
 

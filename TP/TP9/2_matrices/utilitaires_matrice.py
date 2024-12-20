@@ -1,6 +1,6 @@
 """ Fonctions utilitaires pour manipuler les matrices """
 
-import API_matrice1 as matrice_util
+import TP.TP11.API_matrice1 as matrice_util
 
 
 def get_ligne(matrice, ligne):
