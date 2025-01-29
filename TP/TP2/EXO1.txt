@@ -1,0 +1,26 @@
+
+1.1)
+
+la ligne 4 est fausse car les des arguments sont inversés
+
+la ligne 6 est fausse car il manque un argument : l'indice de l'element
+
+la ligne 7 est fausse car les arguments sont inversés
+
+la ligne 9 est fausse car c'est un entier que l'on attends
+
+la ligne 11 et 12 sont fausse car la methode .pop n'existe pas
+
+la ligne 15 est fausse car la methode requiert un seul argument
+
+1.2)
+
+1 : List<Pokemon>
+
+2 : int 
+
+3 : Pokemon
+
+4 : boolean
+
+5 : boolean
