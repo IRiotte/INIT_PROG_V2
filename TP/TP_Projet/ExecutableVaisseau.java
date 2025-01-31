@@ -18,5 +18,30 @@ public class ExecutableVaisseau {
         assert 0 == chasseur.getNombrePassagers();
         assert 8 == chasseur.getPuissance();
         assert !chasseur.transportePassagers() : "Le Chasseur Tie ne transporte pas de passagers";
+
+
+
+
+        Vaisseau executor = new Vaisseau("Super Star Destroyer", 250, 38000);
+        Vaisseau corvette = new Vaisseau("Corvette", 2, 80);
+
+        Flotte empire = new Flotte();
+        empire.ajoute(executor);
+        empire.ajoute(chasseur);
+
+        assert "Nouvelle Flotte".equals(empire.getNom());
+        assert 2 == empire.nombreVaisseaux();
+        assert 250 + 8 == empire.totalPuissance();
+
+        Flotte alliance = new Flotte("Alliance rebelle");
+        alliance.ajoute(new Vaisseau("Faucon Millenium", 4, 100));
+        alliance.ajoute(new Vaisseau("A-Wing", 11, 3000));
+        alliance.ajoute(new Vaisseau("Nautilian", 175, 10000));
+        alliance.ajoute(corvette);
+        alliance.ajoute(new Vaisseau("B-Wing", 7, 0));
+
+        assert "Alliance rebelle".equals(alliance.getNom());
+        assert 5 == alliance.nombreVaisseaux();
+        assert 4 + 11 + 175 + 2 + 7 == alliance.totalPuissance();
     }
 }
