@@ -35,7 +35,7 @@ public class ExecutableVaisseau {
 
         Flotte alliance = new Flotte("Alliance rebelle");
         alliance.ajoute(new Vaisseau("Faucon Millenium", 4, 100));
-        alliance.ajoute(new Vaisseau("A-Wing", 11, 3000));
+        alliance.ajoute(new Vaisseau("A-Wing", 11));
         alliance.ajoute(new Vaisseau("Nautilian", 175, 10000));
         alliance.ajoute(corvette);
         alliance.ajoute(new Vaisseau("B-Wing", 7, 0));
@@ -43,5 +43,13 @@ public class ExecutableVaisseau {
         assert "Alliance rebelle".equals(alliance.getNom());
         assert 5 == alliance.nombreVaisseaux();
         assert 4 + 11 + 175 + 2 + 7 == alliance.totalPuissance();
+
+
+        assert 1 == empire.nombreDeVaisseauxSansPassagers();
+        assert 2 == alliance.nombreDeVaisseauxSansPassagers();
+        assert 250 == empire.puissanceDeFeuMax();
+        assert 175 == alliance.puissanceDeFeuMax();
+        assert "Chasseur Tie".equals (empire.nomDuVaisseauLeMoinsPuissant());
+        assert "Corvette".equals(alliance.nomDuVaisseauLeMoinsPuissant());
     }
 }
