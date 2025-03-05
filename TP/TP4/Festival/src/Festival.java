@@ -13,20 +13,33 @@ public class Festival {
         this.concerts = new ArrayList<>();
     }
 
+    public Festival(String nom) {
+        this.nom = nom;
+        this.nom = "";
+        this.concerts = new ArrayList<>();
+    }
+
+
     public List<Concert> getConcerts() {
         return concerts;
     }
 
-    public void reserver(Spectateur spectateur, Concert concert, int prix){
-        
+    public void ajouterConcert(Concert concert){
+        concerts.add(concert);
+    }
 
+    public void reserver(Spectateur spectateur, Concert concert, int prix){
+        Billet billet = new Billet(concert, spectateur, prix);
+        concert.ajouterBillet(billet);
     }
 
     public int  nombreBilletConcert(Concert concert){
-        return 0;
+        return concert.getNbrBillets();
     }
 
     public int nombreConcert(){
-        return 0;
+        return concerts.size();
     }
+
+    
 }

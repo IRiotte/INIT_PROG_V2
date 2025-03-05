@@ -4,11 +4,11 @@ public class Billet {
     private Spectateur spectateur;
 
 
-    public Billet(Concert concert, Spectateur spectateur) {
+    public Billet(Concert concert, Spectateur spectateur, int prix) {
         this.concert = concert;
         this.spectateur = spectateur;
+        this.prix = prix;
     }
-
 
 
     public Concert getConcert() {
@@ -17,4 +17,10 @@ public class Billet {
     public Spectateur getSpectateur() {
         return spectateur;
     }
+    public int getPrix(){
+        return this.prix;
+    }
+
+
+
 }

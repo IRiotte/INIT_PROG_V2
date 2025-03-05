@@ -13,5 +13,20 @@ public class Concert {
         this.billets = new ArrayList<>();
     }
 
+    public String getNomConcert(){
+        return this.nomConcert;
+    }
+
+    public String getNomGroupe(){
+        return this.nomGroupe;
+    }
+
+    public int getNbrBillets(){
+        return billets.size();
+    }
+
+    public void ajouterBillet(Billet billet){
+        billets.add(billet);
+    }
     
 }
