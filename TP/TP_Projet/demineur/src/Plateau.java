@@ -9,5 +9,8 @@ public class Plateau {
     private List<CaseIntelligente> lePlateau;
 
 
-    
+    public Plateau(int nbLignes, int nbColonnes, int pourcentageDeBombes){
+
+    }
+
 }
