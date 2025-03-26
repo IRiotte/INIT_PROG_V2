@@ -19,5 +19,8 @@ public class Lion extends Animal{
         this.criniere = criniere;
     }
 
-    
+    @Override
+    public String emmettreUnSon(){
+        return "rugissement";
+    }
 }

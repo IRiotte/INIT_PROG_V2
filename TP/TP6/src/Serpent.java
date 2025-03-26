@@ -18,4 +18,9 @@ public class Serpent extends Animal{
     public void setVenimeux(boolean venimeux) {
         this.venimeux = venimeux;
     }
+
+    @Override
+    public String emmettreUnSon(){
+        return "sifflement";
+    }
 }

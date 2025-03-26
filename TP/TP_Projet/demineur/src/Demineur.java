@@ -2,6 +2,64 @@ import java.util.Scanner;
 
 public class Demineur extends Plateau{
 
+    private boolean gameOver;
+    private int score;
+
+    public Demineur(int nbLignes, int nbColonnes, int pourcentage){
+        super(nbLignes, nbColonnes, pourcentage);
+        this.gameOver = false;
+        this.score = 0;
+    }
+
+
+    public int getScore(){
+        return this.score;
+    }
+
+    public void reveler(int x, int y){
+        if (this.getCase(x, y).contientUneBombe()){
+            this.gameOver = true;
+        }
+        else{
+            this.score++;
+            this.getCase(x, y).reveler();
+        }
+    }
+
+    public int marquer(int x, int y){
+        if (this.getCase(x, y).estMarquee()){
+            this.getCase(x, y).reset();
+            this.score--;
+        }
+        else{
+            this.getCase(x, y).marquer();
+            this.score++;
+        }
+        return this.score;
+    }
+
+    public boolean estGagnee(){
+        int nbCasesDecouvertes = 0;
+        for (int i = 0; i < this.getNbLignes(); i++){
+            for (int j = 0; j < this.getNbColonnes(); j++){
+                if (this.getCase(i, j).estDecouverte()){
+                    nbCasesDecouvertes++;
+                }
+            }
+        }
+        return nbCasesDecouvertes == this.getNbLignes()*this.getNbColonnes() - this.getNbTotalBombes();
+    }
+
+    public boolean estPerdue(){
+        return this.gameOver;
+    }
+
+    public void reset(){
+        super.reset();
+        this.gameOver = false;
+        this.score = 0;
+    }
+
 
     public void affiche(){
         System.out.println("JEU DU DEMINEUR");
@@ -76,4 +134,5 @@ public class Demineur extends Plateau{
             System.out.println("Bravo !! Vous avez gagné !");
         }
     }
+
 }

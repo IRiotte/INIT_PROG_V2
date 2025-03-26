@@ -55,4 +55,6 @@ public abstract class Animal {
         return this.nom.equals(tmp.nom) 
         && this.poids == tmp.poids; 
     }
+
+    public abstract String emmettreUnSon();
 }

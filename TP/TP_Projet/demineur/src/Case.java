@@ -18,9 +18,10 @@ public class Case {
         this.estMarquee = false;
     }
 
-    private void poseBombe(){
+    public void poseBombe(){
         this.contientUneBombe = true;
     }
+
 
     public boolean contientUneBombe(){
         return this.contientUneBombe;
@@ -37,6 +38,10 @@ public class Case {
     public boolean reveler(){
         this.estDecouverte = true;
         return this.estDecouverte;
+    }
+
+    public void marquer(){
+        this.estMarquee = true;
     }
 
 
