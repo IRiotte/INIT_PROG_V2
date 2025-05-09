@@ -6,16 +6,27 @@ public class Wagon {
     private List<Siege> sieges;
     private int classe;
 
-    public List<Siege> getSiegesLibres(String date){
 
-        return null;
+    public Wagon(int classe){
+        this.classe = classe;
+        this.sieges = new ArrayList<>();
+    }
+
+    public List<Siege> getSiegesLibres(String date){
+        List<Siege> siegesLibres = new ArrayList<>();
+        for (Siege siege : this.sieges){
+            if (siege.estLibre(date)){
+                siegesLibres.add(siege);
+            }
+        }
+        return siegesLibres;
     }
 
     public int getClasse(){
-        return 0;
+        return this.classe;
     }
 
     public List<Siege> getSieges(){
-        return null;
+        return this.sieges;
     }
 }
