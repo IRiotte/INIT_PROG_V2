@@ -3,6 +3,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.geometry.Pos;
 
 
  
@@ -30,15 +31,16 @@ public class AppliPlusieursFenetres extends Application {
     
     @Override
     public void start(Stage stage) {
-        Pane root = new Fenetre3(this.btnConnect);
-        this.scene = new Scene(root);
+        Pane root = new FenetreConnexion(this.btnConnect);
+        this.scene = new Scene(root,500,300);
         stage.setScene(scene);
         stage.setTitle("Allo 45");
         stage.show();
+        this.scene.setRoot(root);
     }
  
     /*public void afficheFenetre1(){
-        Pane root = new Fenetre3(this.btn1);
+        Pane root = new Fenetre3(this.btnConnect);
         this.scene.setRoot(root);
     }*/
     

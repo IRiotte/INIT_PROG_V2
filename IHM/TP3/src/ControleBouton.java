@@ -1,6 +1,7 @@
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent ;
 import javafx.scene.control.Button;
+import javafx.geometry.Pos;
 
 
 public class ControleBouton implements EventHandler<ActionEvent>{
@@ -14,9 +15,9 @@ public class ControleBouton implements EventHandler<ActionEvent>{
     @Override
     public void handle(ActionEvent event){
         Button button = (Button) (event.getSource());
-        if (button.getText().contains("1"))
+        /*if (button.getText().contains("1"))
             this.appli.afficheFenetre1();
         else
-            this.appli.afficheFenetre2();
+            this.appli.afficheFenetre2();*/
     }
 }
