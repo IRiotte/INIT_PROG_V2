@@ -23,63 +23,40 @@ import java.io.File;
 import java.util.ArrayList;
 
 
+
 /**
  * Vue du jeu du pendu
  */
 public class Pendu extends Application {
-    /**
-     * modèle du jeu
-     **/
     private MotMystere modelePendu;
-    /**
-     * Liste qui contient les images du jeu
-     */
+
     private ArrayList<Image> lesImages;
-    /**
-     * Liste qui contient les noms des niveaux
-     */    
+
     public List<String> niveaux;
 
-    // les différents contrôles qui seront mis à jour ou consultés pour l'affichage
-    /**
-     * le dessin du pendu
-     */
     private ImageView dessin;
-    /**
-     * le mot à trouver avec les lettres déjà trouvé
-     */
+
     private Text motCrypte;
-    /**
-     * la barre de progression qui indique le nombre de tentatives
-     */
+
     private ProgressBar pg;
     /**
      * le clavier qui sera géré par une classe à implémenter
      */
     private Clavier clavier;
-    /**
-     * le text qui indique le niveau de difficulté
-     */
+
     private Text leNiveau;
     /**
      * le chronomètre qui sera géré par une clasee à implémenter
      */
     private Chronometre chrono;
-    /**
-     * le panel Central qui pourra être modifié selon le mode (accueil ou jeu)
-     */
+
+    //le panel Central qui pourra être modifié selon le mode (accueil ou jeu)
     private BorderPane panelCentral;
-    /**
-     * le bouton Paramètre / Engrenage
-     */
+
+    
     private Button boutonParametres;
-    /**
-     * le bouton Accueil / Maison
-     */    
     private Button boutonMaison;
-    /**
-     * le bouton qui permet de (lancer ou relancer une partie
-     */ 
+    private Button boutonInfo;
     private Button bJouer;
 
     /**
@@ -90,7 +67,31 @@ public class Pendu extends Application {
         this.modelePendu = new MotMystere("/usr/share/dict/french", 3, 10, MotMystere.FACILE, 10);
         this.lesImages = new ArrayList<Image>();
         this.chargerImages("./img");
-        // A terminer d'implementer
+        this.niveaux = Arrays.asList("Facile", "Normal", "Difficile", "Hardcore ça mère");
+        this.dessin = new ImageView(lesImages.get(0));
+        this.motCrypte = new Text("test");
+        this.pg = new ProgressBar();
+        this.leNiveau = new Text();
+
+        this.boutonParametres = new Button();
+        ImageView imageView1 = new ImageView(new Image("file:./img/parametres.png"));
+        imageView1.setFitWidth(50);
+        imageView1.setFitHeight(50);
+        this.boutonParametres.setGraphic(imageView1);
+
+        this.boutonMaison = new Button();
+        ImageView imageView2 = new ImageView(new Image("file:./img/home.png"));
+        imageView2.setFitWidth(50);
+        imageView2.setFitHeight(50);
+        this.boutonMaison.setGraphic(imageView2);
+
+        this.boutonInfo = new Button();
+        ImageView imageView3 = new ImageView(new Image("file:./img/info.png"));
+        imageView3.setFitWidth(50);
+        imageView3.setFitHeight(50);
+        this.boutonInfo.setGraphic(imageView3);
+
+        this.bJouer = new Button("Jouer");
     }
 
     /**
@@ -106,9 +107,16 @@ public class Pendu extends Application {
     /**
      * @return le panel contenant le titre du jeu
      */
-    private Pane titre(){
-        // A implementer          
+    private Pane titre(){          
         Pane banniere = new Pane();
+        GridPane grid = new GridPane();
+        Label titre = new Label("Jeu du Pendu");
+        grid.add(titre, 1, 0);
+        grid.add(boutonMaison, 4, 0);
+        grid.add(boutonParametres, 5, 0);
+        grid.add(boutonInfo, 6, 0);
+        banniere.getChildren().addAll(grid);
+
         return banniere;
     }
 
@@ -153,7 +161,7 @@ public class Pendu extends Application {
     }
 
     public void modeAccueil(){
-        // A implementer
+        BorderPane scene = new BorderPane();
     }
     
     public void modeJeu(){
