@@ -8,6 +8,7 @@ import javafx.scene.shape.Circle ;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import javax.swing.border.Border;
 
 /**
  * Génère la vue d'un clavier et associe le contrôleur aux touches
@@ -26,7 +27,16 @@ public class Clavier extends TilePane{
      * @param tailleLigne nombre de touches par ligne
      */
     public Clavier(String touches, EventHandler<ActionEvent> actionTouches) {
-        // A implémenter
+        this.clavier = new ArrayList<>();
+        for (char carac : touches.toCharArray()){
+            Button touche = new Button("" + carac);
+            touche.setMinSize(55, 50);
+            touche.setMaxSize(55, 50);
+            touche.setStyle("-fx-background-radius: 10000;");
+            touche.setOnAction(actionTouches);
+            clavier.add(touche);
+            this.getChildren().add(touche);
+        }
     }
 
     /**

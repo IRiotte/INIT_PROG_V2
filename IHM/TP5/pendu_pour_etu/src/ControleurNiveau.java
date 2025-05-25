@@ -28,6 +28,22 @@ public class ControleurNiveau implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         // A implémenter
         RadioButton radiobouton = (RadioButton) actionEvent.getTarget();
+        switch (radiobouton.getText()) {
+            case "Facile":
+                modelePendu.setNiveau(MotMystere.FACILE);
+                break;
+            case "Moyen":
+                modelePendu.setNiveau(MotMystere.MOYEN);
+                break;
+            case "Difficile":
+                modelePendu.setNiveau(MotMystere.DIFFICILE);
+                break;
+            case "Harcore":
+                modelePendu.setNiveau(MotMystere.EXPERT);
+                break;
+
+        }
+        
         String nomDuRadiobouton = radiobouton.getText();
         System.out.println(nomDuRadiobouton);
     }
