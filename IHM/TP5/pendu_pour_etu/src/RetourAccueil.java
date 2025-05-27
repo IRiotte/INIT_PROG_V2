@@ -33,9 +33,24 @@ public class RetourAccueil implements EventHandler<ActionEvent> {
      */
     @Override
     public void handle(ActionEvent actionEvent) {
+        System.out.println(modelePendu.getMotATrouve());
+        if ( ! this.modelePendu.getMotATrouve().toLowerCase().equals("n")){
+            Optional<ButtonType> reponse = this.vuePendu.popUpPartieEnCours().showAndWait();
+            // si la réponse est oui
+            if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)){
+                System.out.println("Retour à l'accueil");
+                vuePendu.modeAccueil();
+                System.out.println(modelePendu.getMotATrouve());
+            }
+            else{
+                System.out.println("Retour à la partie");
+            }
+        }
+        else {
+            System.out.println("Retour à l'accueil");
+            vuePendu.modeAccueil();
+        }
         
-        vuePendu.modeAccueil();  
-        System.out.println("retour accueil");
         
         
     }

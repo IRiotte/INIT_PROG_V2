@@ -22,7 +22,7 @@ public class MotMystere {
     private String motATrouver;
     /**
      * le niveau de jeu
-     */
+     */ 
     private int niveau;
     /**
      * chaine contenant les lettres déjà trouvées et des * à la place des lettres non encore trouvées
@@ -52,6 +52,8 @@ public class MotMystere {
      * dictionnaire dans lequel on choisit les mots
      */
     private Dictionnaire dict;
+
+    private boolean partieEnCours = false;
 
 
     /**
@@ -249,9 +251,9 @@ public class MotMystere {
      * @return une chaine de caractère donnant l'état du jeu
      */
     public String toString(){
-        return "Mot a trouve: "+this.motATrouver+" Lettres trouvees: "+
-               this.motCrypte+" nombre de lettres restantes "+this.nbLettresRestantes+
-               " nombre d'essais restents: "+this.nbErreursRestantes;
+        return "Mot a trouve: "+this.motATrouver+" -- Lettres trouvees: "+
+               this.motCrypte+" -- nombre de lettres restantes "+this.nbLettresRestantes+
+               " -- nombre d'essais restents: "+this.nbErreursRestantes;
     }
 
 }

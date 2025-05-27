@@ -15,9 +15,7 @@ import javax.swing.border.Border;
  * le choix ici est d'un faire un héritié d'un TilePane
  */
 public class Clavier extends TilePane{
-    /**
-     * il est conseillé de stocker les touches dans un ArrayList
-     */
+
     private List<Button> clavier;
 
     /**
@@ -44,6 +42,18 @@ public class Clavier extends TilePane{
      * @param touchesDesactivees une chaine de caractères contenant la liste des touches désactivées
      */
     public void desactiveTouches(Set<String> touchesDesactivees){
-        // A implémenter
+        for (Button touche : clavier) {
+            if (touchesDesactivees.contains(touche.getText())) {
+                touche.setDisable(true);
+            } else {
+                touche.setDisable(false);
+            }
+        }
+    }
+
+    public void desactiveToutesLesTouches(){
+        for (Button touche : clavier) {
+            touche.setDisable(true);
+        }
     }
 }

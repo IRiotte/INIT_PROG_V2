@@ -31,16 +31,26 @@ public class ControleurLancerPartie implements EventHandler<ActionEvent> {
      */
     @Override
     public void handle(ActionEvent actionEvent) {
-        // A implémenter
-    
-        Optional<ButtonType> reponse = this.vuePendu.popUpLancePartie().showAndWait(); // on lance la fenêtre popup et on attends la réponse
-        // si la réponse est oui
-        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)){
-            System.out.println("Partie lancée");
-            vuePendu.modeJeu();
+        System.out.println(modelePendu.getMotATrouve());
+        if (this.modelePendu.getMotATrouve().toLowerCase().equals("n")){
+            Optional<ButtonType> reponse = this.vuePendu.popUpLancePartie().showAndWait();
+            if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)){
+                System.out.println("Nouvelle partie lancée");
+                vuePendu.lancePartie();
+            }
+            else{
+                System.out.println("lancement de la partie annulé");
+            }
         }
-        else{
-            System.out.println("retour à l'accueil");
+        else {
+            Optional<ButtonType> reponse = this.vuePendu.popUpPartieEnCours().showAndWait();
+            if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)){
+                System.out.println("Nouvelle partie lancée");
+                vuePendu.lancePartie();
+            }
+            else{
+                System.out.println("Nouvelle partie annulée");
+            }
         }
     }
 }
