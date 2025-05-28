@@ -37,7 +37,7 @@ public class ControleurNiveau implements EventHandler<ActionEvent> {
             case "Difficile":
                 modelePendu.setNiveau(MotMystere.DIFFICILE);
                 break;
-            case "Harcore":
+            case "Hardcore":
                 modelePendu.setNiveau(MotMystere.EXPERT);
                 break;
 

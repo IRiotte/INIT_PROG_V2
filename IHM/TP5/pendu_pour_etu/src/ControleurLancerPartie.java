@@ -31,7 +31,6 @@ public class ControleurLancerPartie implements EventHandler<ActionEvent> {
      */
     @Override
     public void handle(ActionEvent actionEvent) {
-        System.out.println(modelePendu.getMotATrouve());
         if (this.modelePendu.getMotATrouve().toLowerCase().equals("n")){
             Optional<ButtonType> reponse = this.vuePendu.popUpLancePartie().showAndWait();
             if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)){

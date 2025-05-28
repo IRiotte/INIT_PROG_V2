@@ -65,17 +65,18 @@ public class Pendu extends Application {
      * initialise les attributs (créer le modèle, charge les images, crée le chrono ...)
      * 
      * "/usr/share/dict/french"
+     * "data/french.txt"
      */
     @Override
     public void init() {
-        this.modelePendu = new MotMystere("data/french.txt", 3, 7, MotMystere.FACILE, 10);
+        this.modelePendu = new MotMystere("/usr/share/dict/french", 3, 7, MotMystere.FACILE, 10);
         this.modelePendu.setMotATrouver("n");
         this.lesImages = new ArrayList<Image>();
         this.chargerImages("./img");
-        this.niveaux = Arrays.asList("Facile", "Normal", "Difficile", "Hardcore");
+        this.niveaux = Arrays.asList("Facile", "Moyen", "Difficile", "Hardcore");
         this.dessin = new ImageView(lesImages.get(0));
         this.motCrypte = new Text(modelePendu.getMotCrypte());
-        this.pg = new ProgressBar(0);
+        this.pg = new ProgressBar(0.0);
 
         this.leNiveau = new Text();
 
@@ -232,10 +233,25 @@ public class Pendu extends Application {
         this.modelePendu.setMotATrouver();
         this.motCrypte.setText(modelePendu.getMotCrypte());
         this.dessin.setImage(lesImages.get(0));
-        this.pg.setProgress(0.2);
         this.boutonMaison.setDisable(false);
         this.clavier.desactiveTouches(this.modelePendu.getLettresEssayees());
-        this.leNiveau.setText("Niveau : " + this.modelePendu.getNiveau());
+        switch (this.modelePendu.getNiveau()) {
+            case 0:
+                this.leNiveau.setText("Niveau Facile");
+                break;
+            case 1:
+                this.leNiveau.setText("Niveau Moyen");
+                break;
+            case 2:
+                this.leNiveau.setText("Niveau Difficile");
+                break;
+            case 3:
+                this.leNiveau.setText("Niveau Hardcore");
+                break;
+        }
+        double nbLettresRest = modelePendu.getNbLettresRestantes();
+        double nbLettre = modelePendu.getMotATrouve().length();
+        this.pg.setProgress(1.0 - nbLettresRest / nbLettre);
         this.modeJeu();
 
         System.out.println(modelePendu);
@@ -248,7 +264,12 @@ public class Pendu extends Application {
     public void majAffichage(){
         this.motCrypte.setText(modelePendu.getMotCrypte());
         this.dessin.setImage(lesImages.get(10 - modelePendu.getNbErreursRestants()));
-        this.pg.setProgress(modelePendu.getNbLettresRestantes() / modelePendu.getMotATrouve().length());
+        System.out.println(modelePendu.getMotATrouve().length());
+        System.out.println(modelePendu.getNbLettresRestantes());
+
+        double nbLettresRest = modelePendu.getNbLettresRestantes();
+        double nbLettre = modelePendu.getMotATrouve().length();
+        this.pg.setProgress(1.0 - nbLettresRest / nbLettre);
         System.out.println(modelePendu);
         if (modelePendu.gagne()) {
             clavier.desactiveToutesLesTouches();
