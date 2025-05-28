@@ -79,12 +79,14 @@ public class Pendu extends Application {
         this.pg = new ProgressBar(0.0);
 
         this.leNiveau = new Text();
+        this.leNiveau.setFont(new Font(30));
 
         this.boutonParametres = new Button();
         ImageView imageView1 = new ImageView(new Image("file:./img/parametres.png"));
         imageView1.setFitWidth(50);
         imageView1.setFitHeight(50);
         this.boutonParametres.setGraphic(imageView1);
+        this.boutonInfo.setOnAction(new ControleurParametre(modelePendu, this));
 
         this.boutonMaison = new Button();
         ImageView imageView2 = new ImageView(new Image("file:./img/home.png"));
@@ -223,7 +225,9 @@ public class Pendu extends Application {
     }
     
     public void modeParametres(){
-        // A implémenter
+        /**
+         * a faire plus tard (ou pas)
+         */
     }
 
     /** lance une partie */
@@ -273,10 +277,12 @@ public class Pendu extends Application {
         System.out.println(modelePendu);
         if (modelePendu.gagne()) {
             clavier.desactiveToutesLesTouches();
+            this.chrono.stop();
             this.popUpMessageGagne().showAndWait();
         } 
         else if (modelePendu.perdu()) {
             clavier.desactiveToutesLesTouches();
+            this.chrono.stop();
             this.popUpMessagePerdu().showAndWait();
         }
 
@@ -289,8 +295,7 @@ public class Pendu extends Application {
      * @return le chronomètre du jeu
      */
     public Chronometre getChrono(){
-        // A implémenter
-        return null; // A enlever
+        return this.chrono;
     }
 
     public Alert popUpPartieEnCours(){
@@ -316,7 +321,7 @@ public class Pendu extends Application {
     }
     
     public Alert popUpMessagePerdu(){  
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Défaite !\n Vous avez perdu la partie.", ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Défaite !\n Vous avez perdu la partie. \n Le mot à trouver était : " + modelePendu.getMotATrouve(), ButtonType.OK);
         return alert;
     }
 
@@ -327,7 +332,6 @@ public class Pendu extends Application {
     @Override
     public void start(Stage stage) {
         stage.setTitle("IUTEAM'S - La plateforme de jeux de l'IUTO");
-        boutonParametres.setDisable(true);
         stage.setScene(this.laScene());
         this.modeAccueil();
         stage.show();

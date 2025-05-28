@@ -36,6 +36,8 @@ public class ControleurLancerPartie implements EventHandler<ActionEvent> {
             if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)){
                 System.out.println("Nouvelle partie lancée");
                 vuePendu.lancePartie();
+                vuePendu.getChrono().resetTime();
+                vuePendu.getChrono().start();
             }
             else{
                 System.out.println("lancement de la partie annulé");
@@ -46,6 +48,8 @@ public class ControleurLancerPartie implements EventHandler<ActionEvent> {
             if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)){
                 System.out.println("Nouvelle partie lancée");
                 vuePendu.lancePartie();
+                vuePendu.getChrono().resetTime();
+                vuePendu.getChrono().start();
             }
             else{
                 System.out.println("Nouvelle partie annulée");

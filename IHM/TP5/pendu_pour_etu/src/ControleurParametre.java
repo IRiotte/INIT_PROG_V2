@@ -4,10 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import java.util.Optional;
 
-/**
- * Contrôleur à activer lorsque l'on clique sur le bouton Accueil
- */
-public class RetourAccueil implements EventHandler<ActionEvent> {
+public class ControleurParametre implements EventHandler<ActionEvent> {
     /**
      * modèle du jeu
      */
@@ -21,7 +18,7 @@ public class RetourAccueil implements EventHandler<ActionEvent> {
      * @param modelePendu modèle du jeu
      * @param vuePendu vue du jeu
      */
-    public RetourAccueil(MotMystere modelePendu, Pendu vuePendu) {
+    public ControleurParametre(MotMystere modelePendu, Pendu vuePendu) {
         this.modelePendu = modelePendu;
         this.vuePendu = vuePendu;
     }
@@ -38,18 +35,17 @@ public class RetourAccueil implements EventHandler<ActionEvent> {
             Optional<ButtonType> reponse = this.vuePendu.popUpPartieEnCours().showAndWait();
             // si la réponse est oui
             if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)){
-                System.out.println("Retour à l'accueil");
-                vuePendu.modeAccueil();
-                System.out.println(modelePendu.getMotATrouve());
+                System.out.println("Ouverture des paramètres");
+                vuePendu.modeParametres();
                 vuePendu.getChrono().stop();
             }
             else{
-                System.out.println("Retour à la partie");
+                System.out.println("Retour");
             }
         }
         else {
-            System.out.println("Retour à l'accueil");
-            vuePendu.modeAccueil();
+            System.out.println("Ouverture des paramètres");
+            vuePendu.modeParametres();
         }
         
         

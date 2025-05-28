@@ -38,6 +38,7 @@ public class Chronometre extends Text{
 
         keyFrame = new KeyFrame(Duration.seconds(1), actionTemps);
         timeline = new Timeline(keyFrame);
+        this.stop();
     }
 
     /**
@@ -46,27 +47,37 @@ public class Chronometre extends Text{
      * @param tempsMillisec la durée depuis à afficher
      */
     public void setTime(long tempsMillisec){
-        // A implémenter
+        long secondes = tempsMillisec / 1000;
+        secondes = secondes % 60;
+        this.setText(secondes + " s");
+
     }
 
     /**
      * Permet de démarrer le chronomètre
      */
     public void start(){
-        // A implémenter
+        if (timeline.getStatus() == Animation.Status.STOPPED) {
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+        }
     }
 
     /**
      * Permet d'arrêter le chronomètre
      */
     public void stop(){
-        // A implémenter
+        if (timeline.getStatus() == Animation.Status.RUNNING) {
+            timeline.stop();
+        }
     }
 
     /**
      * Permet de remettre le chronomètre à 0
      */
     public void resetTime(){
-        // A implémenter
+        this.actionTemps.reset();
+        this.setText("0 s");
+        timeline.stop();
     }
 }
