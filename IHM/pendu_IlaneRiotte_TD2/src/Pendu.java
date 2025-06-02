@@ -22,10 +22,6 @@ import java.io.File;
 import java.time.chrono.ThaiBuddhistDate;
 import java.util.ArrayList;
 
-import javafx.scene.shape.Rectangle;
-
-
-
 
 
 /**
@@ -90,7 +86,7 @@ public class Pendu extends Application {
         imageView1.setFitWidth(50);
         imageView1.setFitHeight(50);
         this.boutonParametres.setGraphic(imageView1);
-        this.boutonParametres.setOnAction(new ControleurParametre(modelePendu, this));
+        this.boutonInfo.setOnAction(new ControleurParametre(modelePendu, this));
 
         this.boutonMaison = new Button();
         ImageView imageView2 = new ImageView(new Image("file:./img/home.png"));
@@ -229,24 +225,9 @@ public class Pendu extends Application {
     }
     
     public void modeParametres(){
-        BorderPane panelAcc = new BorderPane();
-        VBox optionVbox = new VBox();
-        HBox themeHbox = new HBox();
-        Label lbCouleur = new Label("Couleur du thème : ");
-        ComboBox<Rectangle> comboBoxTheme = new ComboBox<>();
-
-        Rectangle rect = new Rectangle(20, 20);
-        rect.setFill(Color.LAVENDER);
-
-        comboBoxTheme.getItems().addAll(rect, rect2);
-        comboBoxTheme.setValue(rect);
-
-        themeHbox.getChildren().addAll(lbCouleur, comboBoxTheme);
-        themeHbox.setAlignment(Pos.CENTER);
-        optionVbox.getChildren().addAll(themeHbox);
-        panelAcc.setCenter(optionVbox);
-        this.panelCentral = panelAcc;
-        this.fenetre.setCenter(panelCentral);
+        /**
+         * a faire plus tard (ou pas)
+         */
     }
 
     /** lance une partie */
